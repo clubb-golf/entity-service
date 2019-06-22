@@ -9,6 +9,6 @@ export class ClubController {
 
   @Get()
   getAllClubs() {
-    return 'all clubs';
+    return this.clubService.getAllClubs();
   }
 }
