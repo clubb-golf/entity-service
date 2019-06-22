@@ -4,7 +4,7 @@ import { ClubEntity } from '../../club/models/club.entity';
 @Entity({ name: 'courses' })
 export class CourseEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: string;
 
     @Column()
     name: string;
