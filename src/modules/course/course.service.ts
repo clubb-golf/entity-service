@@ -13,7 +13,13 @@ export class CourseService {
     return this.courseRepository.find();
   }
 
-  getCourseById(id) {
-    return this.courseRepository.findOne(id);
+  async getCourseById(id) {
+    const course = await this.courseRepository.findOne(id);
+    return course;
+  }
+
+  async getAllCoursesOfClub(id) {
+    const courses = this.courseRepository.find({ where: { clubId: id } });
+    return courses;
   }
 }
