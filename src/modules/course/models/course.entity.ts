@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 import { ClubEntity } from '../../club/models/club.entity';
+import { BuildEntity } from '../../build/models/build.entity';
 
-@Entity({ name: 'courses' })
+@Entity({ name: 'course' })
 export class CourseEntity {
     @PrimaryGeneratedColumn()
     id: string;
@@ -17,6 +18,9 @@ export class CourseEntity {
 
     @ManyToOne(type => ClubEntity, club => club.courses)
     club: ClubEntity;
+
+    @OneToMany(type => BuildEntity, build => build.course)
+    builds: BuildEntity[];
 
     @CreateDateColumn()
     createdAt: Date;
