@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
 import { CourseEntity } from '../../course/models/course.entity';
 
 @Entity({ name: 'clubs' })
@@ -9,8 +9,8 @@ export class ClubEntity {
     @Column()
     name: string;
 
-    @Column()
-    informalName: string;
+    @Column({ nullable: true })
+    informalName?: string;
 
     @Column()
     type: string;
@@ -20,4 +20,7 @@ export class ClubEntity {
 
     @OneToMany(type => CourseEntity, course => course.club)
     courses: CourseEntity[];
+
+    @CreateDateColumn()
+    createdAt: Date;
 }
